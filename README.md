@@ -13,7 +13,7 @@ All data is stored and retrieved from a SQL database.
 - Sqlite
 
 ## Run Instructions
-To run the application, run the following command:
+To run the application, run the following command (Linux/MacOS):
 ```
 python3 app/main.py <database_name>
 ```
