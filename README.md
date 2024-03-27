@@ -1,7 +1,7 @@
 # Library App
 
-## About
-This program simulates a simple online library interface. Users are able to:
+## Features
+Users are able to:
 - Login or signup directly on the login screen
 - Search, borrow, and return books once they are logged in
 - Pay for any late penalties they have incurred through the interface.
