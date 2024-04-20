@@ -3,14 +3,17 @@ This file is the main file for the program. This file will run when we want the 
 """
 
 import getpass
+
 from connection import valid_db
-from loginscreen import login, signup, check_exists
-from systemfunctionality import view_profile, return_book, search_book, pay_penalty
+from loginscreen import check_exists, login, signup
+from systemfunctionality import (pay_penalty, return_book, search_book,
+                                 view_profile)
+
 
 def login_screen():
     print("============================================")
     print("Library Database System")
-    
+
     while True:
 
         print("1. Login")
@@ -19,7 +22,7 @@ def login_screen():
 
         choice = input("Enter choice: ")
 
-        if choice == "1": # Login
+        if choice == "1":  # Login
             email = input("Email: ")
             password = getpass.getpass("Password: ")
             user = login(email, password)
@@ -28,14 +31,16 @@ def login_screen():
                 return user
             else:
                 print("Invalid email or password\n")
-        
-        elif choice == "2": # Signup
+
+        elif choice == "2":  # Signup
             email = input("Email: ")
 
-            #keep prompt for email until getting an unique one
+            # Keep prompt for email until getting an unique one
             while check_exists(email):
-                email = input("Email already in use, please use another email \nEmail: ")
-                
+                email = input(
+                    "Email already in use, please use another email \nEmail: "
+                )
+
             password = getpass.getpass("Password: ")
             name = input("Name: ")
             byear = input("Birth Year: ")
@@ -44,12 +49,12 @@ def login_screen():
             signup(email, password, name, byear, faculty)
             print("Signup successful. You can now login.\n")
 
-
-        elif choice == "3": #Exit
+        elif choice == "3":  # Exit
             return
-        
-        else: # Other
+
+        else:  # Other
             print("Please select option 1, 2, or 3\n")
+
 
 def function_select(user):
     while True:
@@ -62,7 +67,7 @@ def function_select(user):
         print("3. Search for a book")
         print("4. Pay a penalty")
         print("5. Log off\n")
-        
+
         choice = input("Enter choice number: ")
         if choice == "1":
             view_profile(user)
@@ -79,6 +84,7 @@ def function_select(user):
             print("Please select option 1, 2, 3, 4 or 5\n")
     return True
 
+
 def main():
     user = None
 
@@ -87,17 +93,18 @@ def main():
     while True:
         user = login_screen()
 
-        if user is not None: # Login attempt is successful
-            while function_select(user): # Return user to login screen if they logoff
+        if user is not None:  # Login attempt is successful
+            while function_select(user):  # Return user to login screen if they logoff
                 user = login_screen()
-                if user is None: # User exists the program
+                if user is None:  # User exists the program
                     print("Exiting...\n")
                     return
             break
 
-        elif user is None: # User exists the program
+        elif user is None:  # User exists the program
             print("Exiting...\n")
             return
+
 
 if __name__ == "__main__":
     main()
