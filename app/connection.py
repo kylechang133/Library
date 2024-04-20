@@ -20,8 +20,8 @@ def valid_db():
 
 
 def connect_db():
-    database_name = sys.argv[1]
-    conn = sqlite3.connect(database_name)
+    database_path = f"data/{sys.argv[1]}"
+    conn = sqlite3.connect(database_path)
     conn.row_factory = (
         sqlite3.Row
     )  # Makes it so that table entries can be accessed like a python dictionary
